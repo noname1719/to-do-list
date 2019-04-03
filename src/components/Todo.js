@@ -22,7 +22,8 @@ class Todo extends Component {
     handleClick() {
         this.setState({todos: [...this.state.todos, [this.state.text, this.state.id]]})
         this.setState({id: this.state.id + 1})
-        this.inputRef.current = ''
+        this.inputRef.current.value = ''
+
 
     }
 
