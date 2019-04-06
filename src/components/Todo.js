@@ -8,6 +8,7 @@ class Todo extends Component {
         this.state = {
             id: 0,
             text: '',
+            activeTasks: 0,
             todos: []
         };
         this.handleChange = this.handleChange.bind(this);
@@ -24,8 +25,6 @@ class Todo extends Component {
         this.setState({id: this.state.id + 1})
         this.inputRef.current.value = ''
         this.setState({text:''})
-
-
     }
 
     render() {
@@ -34,12 +33,12 @@ class Todo extends Component {
             <div>
                 <table>
                         {todos}
-
                 </table>
                 <form>
                     <input ref={this.inputRef} id={'input'} type={'text'} onChange={this.handleChange}></input>
                     <input className={'btn'} type={'button'} value={'add todo'} onClick={this.handleClick}/>
                 </form>
+                <p>Active tasks: {this.state.activeTasks}</p>
             </div>
         )
 

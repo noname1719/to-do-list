@@ -4,24 +4,26 @@ class Task extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            isActive: true
+            isActive: true,
+            textStyle: 'none'
         }
         this.changeStatus = this.changeStatus.bind(this)
     }
 
     changeStatus() {
-        this.state.isActive ? this.setState({isActive: false}) : this.setState({isActive: true})
+        this.state.isActive ? this.setState({isActive: false,textStyle:'line-through'}): this.setState({isActive: true,textStyle:'none'})
     }
 
     render() {
         const status = this.state.isActive ? "Active" : "Done"
         const taskText = this.props.todo[0]
+        const textStyle = this.state.textStyle
         return (
             <tr>
                 <td>
                     {status}
                 </td>
-                <td>
+                <td style={{textDecoration: textStyle}}>
                     {taskText}
                 </td>
                 <td>
