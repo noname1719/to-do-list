@@ -6,6 +6,7 @@ class Todo extends Component {
         super(props)
         this.inputRef = React.createRef()
         this.state = {
+            value: 'cocount',
             id: 0,
             text: '',
             activeTasks: 0,
@@ -27,8 +28,20 @@ class Todo extends Component {
         this.setState({text:''})
     }
 
+    updateData = (value) =>{
+        this.setState({activeTasks: this.state.activeTasks + value})
+    }
+    handleChange(event) {
+        this.setState({value: event.target.value});
+    }
+
+    handleSubmit(event) {
+        alert('Your favorite flavor is: ' + this.state.value);
+        event.preventDefault();
+    }
+
     render() {
-        const todos = this.state.todos.map(todo => <Task todo={todo}/>)
+        const todos = this.state.todos.map(todo => <Task todo={todo} updateData={this.updateData}/>)
         return (
             <div>
                 <table>
@@ -39,6 +52,18 @@ class Todo extends Component {
                     <input className={'btn'} type={'button'} value={'add todo'} onClick={this.handleClick}/>
                 </form>
                 <p>Active tasks: {this.state.activeTasks}</p>
+                <form onSubmit={this.handleSubmit}>
+                    <label>
+                        Pick your favorite flavor:
+                        <select value={this.state.value} onChange={this.handleChange}>
+                            <option value="grapefruit">Grapefruit</option>
+                            <option value="lime">Lime</option>
+                            <option value="coconut">Coconut</option>
+                            <option value="mango">Mango</option>
+                        </select>
+                    </label>
+                    <input type="submit" value="Submit" />
+                </form>
             </div>
         )
 

@@ -7,11 +7,13 @@ class Task extends Component {
             isActive: true,
             textStyle: 'none'
         }
+        this.props.updateData(1)
         this.changeStatus = this.changeStatus.bind(this)
     }
 
     changeStatus() {
         this.state.isActive ? this.setState({isActive: false,textStyle:'line-through'}): this.setState({isActive: true,textStyle:'none'})
+        this.state.isActive ? this.props.updateData(-1) : this.props.updateData(1)
     }
 
     render() {
