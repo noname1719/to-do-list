@@ -7,7 +7,8 @@ class Task extends Component {
             isActive: true,
             textStyle: 'none'
         }
-        this.props.updateData(1)
+        const taskStatus = this.props.todo[2]
+        this.props.updateData(1, taskStatus)
         this.changeStatus = this.changeStatus.bind(this)
     }
 
@@ -20,6 +21,7 @@ class Task extends Component {
         const status = this.state.isActive ? "Active" : "Done"
         const taskText = this.props.todo[0]
         const textStyle = this.state.textStyle
+
         return (
             <tr>
                 <td>
